@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'nguoi_quan_tri';
     protected $fillable = [
         'username',
         'firstname',
