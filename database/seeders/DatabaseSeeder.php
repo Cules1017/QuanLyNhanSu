@@ -15,11 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'username' => 'admin',
-            'firstname' => 'Admin',
-            'lastname' => 'Admin',
-            'email' => 'admin@argon.com',
+        DB::table('nguoi_quan_tri')->insert([
+            'ten_dang_nhap' => 'admin',
+            'email' => 'admin@gmail.com',
             'password' => bcrypt('secret')
         ]);
     }
