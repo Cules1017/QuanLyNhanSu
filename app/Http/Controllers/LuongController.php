@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Luong;
+use App\Models\NhanVien;
 use Illuminate\Http\Request;
 
 class LuongController extends Controller
@@ -11,7 +13,10 @@ class LuongController extends Controller
      */
     public function index()
     {
-        //
+        $a=Luong::all();
+        $b=NhanVien::all();
+        return view('pages.luong',['data' => $a, 'nv' => $b]);
+
     }
 
     /**

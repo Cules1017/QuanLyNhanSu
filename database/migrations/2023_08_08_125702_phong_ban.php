@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('phong_ban', function (Blueprint $table) {
             $table->id('ma_phong_ban');
-            $table->integer('ten_phong_ban');
+            $table->string('ten_phong_ban');
         });
     }
 

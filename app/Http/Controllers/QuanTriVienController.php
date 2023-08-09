@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PhongBan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class PhongBanController extends Controller
+class QuanTriVienController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data=PhongBan::all();
-        return view('pages.phongban',['data'=>$data]);
+        $data=User::all();
+        return view('pages.quantri',['data'=>$data]);
     }
 
     /**
@@ -30,10 +30,12 @@ class PhongBanController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        $vitri_moi=new PhongBan();
-        $vitri_moi->ten_phong_ban=$request->ten_phong_ban;
+        $vitri_moi=new User();
+        $vitri_moi->ten_dang_nhap=$request->ten_dang_nhap;
+        $vitri_moi->password=$request->password;
+        $vitri_moi->email=$request->email;
         $vitri_moi->save();
-        return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-phong-ban']);
+        return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-quan-tri']);
     }
 
     /**
@@ -41,9 +43,9 @@ class PhongBanController extends Controller
      */
     public function show(string $id)
     {
-        $a=PhongBan::find($id)->delete();
+        $a=User::find($id)->delete();
         if($a)
-        return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-phong-ban']);
+        return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-quan-tri']);
     }
 
     /**
@@ -51,8 +53,8 @@ class PhongBanController extends Controller
      */
     public function edit(string $id)
     {
-        $a=PhongBan::find($id);
-        return view('pages.phongbanedit',['data'=>$a]); 
+        $a=User::find($id);
+        return view('pages.quantriedit',['data'=>$a]); 
     }
 
     /**
@@ -60,10 +62,10 @@ class PhongBanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $a=PhongBan::find($id);
+        $a=User::find($id);
         $a->ten_phong_ban=$request->ten_phong_ban;
         $a->save();
-        return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-phong-ban']);
+        return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-quan-tri']);
     }
 
     /**
