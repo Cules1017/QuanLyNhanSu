@@ -21,17 +21,27 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
+        //dd(bcrypt('nhanvien'));
         $credentials = $request->validate([
             'ten_dang_nhap' => ['required'],
             'password' => ['required'],
         ]);
+        
 
-        if (Auth::attempt(['ten_dang_nhap' => $request->ten_dang_nhap, 'password' => $request->password])) {
+        if (Auth::guard('web')->attempt(['ten_dang_nhap' => $request->ten_dang_nhap, 'password' => $request->password])) {
             $request->session()->regenerate();
+            //dd($request->session());
 
             return redirect()->intended('dashboard');
         }
+        if (Auth::guard('nhanvien')->attempt(['ten' => $request->ten_dang_nhap, 'password' => $request->password])) {
+            //dd(11);
+            $request->session()->regenerate();
+           //dd($request->session());
 
+            return redirect()->intended('nhanvien-dc');
+        }
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
@@ -39,7 +49,8 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('web')->logout();
+        Auth::guard('nhanvien')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

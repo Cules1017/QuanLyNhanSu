@@ -15,6 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
+        
         'passwords' => 'users',
     ],
 
@@ -39,6 +40,11 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+  
+        'nhanvien' => [
+            'driver' => 'session',
+            'provider' => 'nhan_vien',
         ],
     ],
 
@@ -65,10 +71,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'nhan_vien' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\NhanVien::class,
+        ],
     ],
 
     /*
@@ -93,6 +99,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'nhan_vien' => [
+            'provider' => 'nhan_vien',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

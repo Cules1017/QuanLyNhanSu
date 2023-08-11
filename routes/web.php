@@ -38,8 +38,17 @@ Route::get('/', function () {return redirect('/dashboard');})->middleware('auth'
 	Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('guest')->name('reset.perform');
 	Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
 	Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
-	Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::group(['middleware' => 'auth'], function () {
+	//Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::group(['middleware' => 'auth:nhanvien'], function () {
+	//Route::group('/nhanvien-dc', function () {
+		Route::get('/nhanvien-dc',[NhanVienController::class,'index1'])->name('xem-nhanvien-dc');
+		Route::post('/nhanvien-dc',[NhanVienController::class,'store1'])->name('store-nhanvien-dc');
+		Route::get('/xoa-nhanvien-dc',[NhanVienController::class,'show1'])->name('show-xoa-nhanvien-dc');
+		Route::get('/sua-nhanvien-dc',[NhanVienController::class,'edit1'])->name('show-sua-nhanvien-dc');
+		Route::post('/chinh-nhanvien-dc',[NhanVienController::class,'update1'])->name('chinh-sua-nhanvien-dc');
+});
+Route::group(['middleware' => 'auth:web'], function () {
+	Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
 	Route::get('/vi-tri',[VitriController::class,'index'])->name('xem-vi-tri');
 	Route::post('/luu-vi-tri',[VitriController::class,'store'])->name('store-vi-tri');
 	Route::get('/xoa-vi-tri/{id}',[VitriController::class,'show'])->name('show-xoa-vi-tri');
