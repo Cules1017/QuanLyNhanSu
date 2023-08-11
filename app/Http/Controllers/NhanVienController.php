@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Luong;
 use App\Models\NhanVien;
 use App\Models\PhongBan;
-use App\Models\Vitri;
+use App\Models\ViTri;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,10 +17,23 @@ class NhanVienController extends Controller
      */
     public function index()
     {
-        $nhanviens = NhanVien::all();
+        $nhanviens = NhanVien::paginate(5);
         $vitris = Vitri::all();
         $pbis=PhongBan::all();
-        return view('pages.nhanvien',['nhanviens' => $nhanviens, 'vitris' => $vitris,'pbis'=>$pbis]);
+        return view('pages.nhanvien',['nhanviens' => $nhanviens, 'vitris' => $vitris, 'pbis'=>$pbis]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $nhanviens = NhanVien::where('ho', 'like', '%'.$query.'%')
+                            ->orWhere('ten', 'like', '%'.$query.'%')
+                            ->orWhere('cccd', 'like', '%'.$query.'%')
+                            ->orWhere('email', 'like', '%'.$query.'%')
+                            ->paginate(5);
+        $vitris = Vitri::all();
+        $pbis=PhongBan::all();
+        return view('pages.nhanvien', ['nhanviens' => $nhanviens, 'vitris' => $vitris, 'pbis'=>$pbis]);
     }
 
     /**
@@ -46,6 +61,13 @@ class NhanVienController extends Controller
         $vitri_moi->ma_vi_tri=$request->ma_vi_tri;
         $vitri_moi->ma_phong_ban=$request->ma_phong_ban;
         $vitri_moi->save();
+
+        $luongNV = new Luong();
+        $luongNV->ma_nhan_vien = $vitri_moi->ma_nhan_vien;
+        $luongNV->tien_luong = $request->luong;
+        $luongNV->ngay_cap_nhat = Carbon::now();
+        $luongNV->save();
+
         return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-nhan-vien']);
     }
     public function show(string $id)

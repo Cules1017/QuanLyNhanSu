@@ -9,6 +9,16 @@
                     <div class="card-header pb-0">
                         <h6>Bảng Quản Lý Nhân Viên</h6>
                     </div>
+
+                    <div class="ms-md-auto pe-md-3 align-items-center">
+                        <form action="{{ route('tim-kiem-nhan-vien') }}" method="GET">
+                            <div class="input-group">
+                                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                <input type="text" name="query" class="form-control" placeholder="Tìm kiếm...">
+                            </div>
+                        </form>
+                    </div>
+
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             <table class="table align-items-center mb-0">
@@ -60,6 +70,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{ $nhanviens->links() }} 
                     </div>
                 </div>
             </div>
@@ -86,6 +97,10 @@
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="email" name="email" required="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="luong" class="form-label">Lương <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="luong" name="luong" required="">
                             </div>
                             <div class="mb-3">
                                 <label for="anh_nhan_vien" class="form-label">Ảnh nhan viên <span class="text-danger">*</span></label>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vitri;
+use App\Models\ViTri;
 use Illuminate\Http\Request;
 
 class VitriController extends Controller
@@ -12,8 +12,15 @@ class VitriController extends Controller
      */
     public function index()
     {
-        $data=Vitri::all();
-        return view('pages.vitri',['data'=>$data]);
+        $data=Vitri::paginate(5);
+        return view('pages.vitri',['data' => $data]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $data = Vitri::where('ten_vi_tri', 'like', '%'.$query.'%')->paginate(5);
+        return view('pages.vitri', ['data' => $data]);
     }
 
     /**

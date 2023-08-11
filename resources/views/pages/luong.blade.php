@@ -30,10 +30,10 @@
                                 </thead>
                                 
                                 <tbody>
-                                    @foreach ($data as $item)
+                                    @foreach ($nhanviens as $item)
                                     <tr>
                                         <td class="align-middle">{{ $item->ma_luong }}</td>
-                                        <td class="align-middle">{{ $item->luong }}</td>
+                                        <td class="align-middle">{{ $item->tien_luong }}</td>
                                         <td class="align-middle">{{ $item->ma_nhan_vien }}</td>
                                         <td class="align-middle">{{ $item->ten_nhan_vien }}</td>
                                         <td class="align-middle">{{ $item->ngay_cap_nhat }}</td>
@@ -54,6 +54,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{ $luongs->links() }}
                     </div>
                 </div>
             
