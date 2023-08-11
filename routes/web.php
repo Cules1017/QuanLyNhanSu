@@ -45,12 +45,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/xoa-vi-tri/{id}',[VitriController::class,'show'])->name('show-xoa-vi-tri');
 	Route::get('/sua-vi-tri/{id}',[VitriController::class,'edit'])->name('show-sua-vi-tri');
 	Route::post('/chinh-vi-tri/{id}',[VitriController::class,'update'])->name('chinh-sua-vi-tri');
+	Route::get('/tim-kiem-vi-tri',[VitriController::class,'search'])->name('tim-kiem-vi-tri');
 	
 	Route::get('/phong-ban',[PhongBanController::class,'index'])->name('xem-phong-ban');
 	Route::post('/luu-phong-ban',[PhongBanController::class,'store'])->name('store-phong-ban');
 	Route::get('/xoa-phong-ban/{id}',[PhongBanController::class,'show'])->name('show-xoa-phong-ban');
 	Route::get('/sua-phong-ban/{id}',[PhongBanController::class,'edit'])->name('show-sua-phong-ban');
 	Route::post('/chinh-phong-ban/{id}',[PhongBanController::class,'update'])->name('chinh-sua-phong-ban');
+	Route::get('/tim-kiem-phong-ban',[PhongBanController::class,'search'])->name('tim-kiem-phong-ban');
 	
 	Route::get('/quan-tri',[QuanTriVienController::class,'index'])->name('xem-quan-tri');
 	Route::post('/luu-quan-tri',[QuanTriVienController::class,'store'])->name('store-quan-tri');
@@ -63,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/xoa-nhan-vien/{id}',[NhanVienController::class,'show'])->name('show-xoa-nhan-vien');
 	Route::get('/sua-nhan-vien/{id}',[NhanVienController::class,'edit'])->name('show-sua-nhan-vien');
 	Route::post('/chinh-nhan-vien/{id}',[NhanVienController::class,'update'])->name('chinh-sua-nhan-vien');
+	Route::get('/tim-kiem-nhan-vien',[NhanVienController::class,'search'])->name('tim-kiem-nhan-vien');
 
 	Route::get('/virtual-reality', [PageController::class, 'vr'])->name('virtual-reality');
 	Route::get('/rtl', [PageController::class, 'rtl'])->name('rtl');

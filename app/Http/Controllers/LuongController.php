@@ -13,9 +13,9 @@ class LuongController extends Controller
      */
     public function index()
     {
-        $a=Luong::all();
+        $a=Luong::paginate(5);
         $b=NhanVien::all();
-        return view('pages.luong',['data' => $a, 'nv' => $b]);
+        return view('pages.luong',['luongs' => $a, 'nhanviens' => $b]);
 
     }
 

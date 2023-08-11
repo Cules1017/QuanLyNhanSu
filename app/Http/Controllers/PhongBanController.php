@@ -12,8 +12,15 @@ class PhongBanController extends Controller
      */
     public function index()
     {
-        $data=PhongBan::all();
+        $data=PhongBan::paginate(5);
         return view('pages.phongban',['data'=>$data]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $data = PhongBan::where('ten_phong_ban', 'like', '%'.$query.'%')->paginate(5);
+        return view('pages.phongban', ['data' => $data]);
     }
 
     /**

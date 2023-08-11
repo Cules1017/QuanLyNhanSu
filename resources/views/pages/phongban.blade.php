@@ -9,6 +9,16 @@
                     <div class="card-header pb-0">
                         <h6>Bảng Quản Lý Phòng Ban</h6>
                     </div>
+                    
+                    <div class="ms-md-auto pe-md-3 align-items-center">
+                        <form action="{{ route('tim-kiem-phong-ban') }}" method="GET">
+                            <div class="input-group">
+                                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                <input type="text" name="query" class="form-control" placeholder="Tìm kiếm...">
+                            </div>
+                        </form>
+                    </div>
+
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             <table class="table align-items-center mb-0">
@@ -46,6 +56,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{ $data->links() }}
                     </div>
                 </div>
             </div>
