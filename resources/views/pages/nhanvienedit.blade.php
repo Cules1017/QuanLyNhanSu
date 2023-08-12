@@ -39,7 +39,7 @@
                                         <select name="ma_vi_tri" id="ma_vi_tri" required="" class="form-control">
                                             <option value="" selected="" disabled="">Chọn vị trí</option>
                                             @foreach ($vitris as $vitri)
-                                            <option {{$data->ma_phong_ban==$vitri->ma_vi_tri?'selected':''}} value="{{ $vitri->ma_vi_tri }}">{{$vitri->ten_vi_tri}}</option>
+                                            <option {{$data->ma_vi_tri==$vitri->ma_vi_tri?'selected':''}} value="{{ $vitri->ma_vi_tri }}">{{$vitri->ten_vi_tri}}</option>
                                             @endforeach
                                         </select>
                                     </div>
