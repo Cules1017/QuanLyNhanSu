@@ -19,7 +19,7 @@ class nhanvien
         //dd(Auth::guard('nhanvien')->user());
         if(Auth::guard('nhanvien')->check()){
         return $next($request);}else{
-            dd('không có quyền truy cập');
+            return redirect()->route('403ad');
         }
     }
 }

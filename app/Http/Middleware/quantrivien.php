@@ -18,7 +18,7 @@ class quantrivien
     {
         if(Auth::guard('web')->check()){
             return $next($request);}else{
-                dd('không có quyền truy cập');
+                return redirect()->route('403nv');
             }
     }
 }
