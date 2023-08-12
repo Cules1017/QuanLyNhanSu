@@ -60,6 +60,7 @@ class NhanVienController extends Controller
         $vitri_moi->anh_nhan_vien=$path;
         $vitri_moi->ma_vi_tri=$request->ma_vi_tri;
         $vitri_moi->ma_phong_ban=$request->ma_phong_ban;
+        $vitri_moi->password=bcrypt('nhanvien');
         $vitri_moi->created_at=Carbon::now();
 
         $vitri_moi->save();
