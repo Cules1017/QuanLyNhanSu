@@ -48,7 +48,7 @@ Route::group(['middleware' => 'nhanvien'], function () {
 		Route::post('/chinh-nhanvien-dc',[NhanVienController::class,'update1'])->name('chinh-sua-nhanvien-dc');
 });
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('403u', function(){return  view('pages.403',['data'=>'/dashboard']);})->name('403ad');
+Route::get('403ud', function(){return  view('pages.403',['data'=>'/dashboard']);})->name('403ad');
 Route::get('403u', function(){return  view('pages.403',['data'=>'/nhanvien-dc']);})->name('403nv');
 Route::group(['middleware' => 'webses'], function () {
 	Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
