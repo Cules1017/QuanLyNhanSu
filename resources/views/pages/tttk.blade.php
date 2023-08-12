@@ -17,11 +17,14 @@
                         <p class="mb-0 font-weight-bold text-sm">
                             {{$pbis->ten_phong_ban.' - '.$vitris->ten_vi_tri}}
                         </p>
+                        <form role="form" method="post" action="{{ route('logout') }}" id="logout-form">
+                            @csrf
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                            >
                             Log out
                         </a>
+                        </form>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
