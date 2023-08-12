@@ -1,7 +1,7 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Dashboard'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Trang chủ'])
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -10,13 +10,13 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money</p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Số lượng nhân viên</p>
                                     <h5 class="font-weight-bolder">
-                                        $53,000
+                                        {{ $countNV }}
                                     </h5>
                                     <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                        since yesterday
+                                        <span class="text-success text-sm font-weight-bolder">Cập nhật gần nhất</span>
+                                        {{ $nvlast }}
                                     </p>
                                 </div>
                             </div>
@@ -35,13 +35,13 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Users</p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Số vị trí</p>
                                     <h5 class="font-weight-bolder">
-                                        2,300
+                                        {{ $countVT }}
                                     </h5>
                                     <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                        since last week
+                                        <span class="text-success text-sm font-weight-bolder">Cập nhật gần nhất</span>
+                                        {{ $vtlast }}
                                     </p>
                                 </div>
                             </div>
@@ -60,13 +60,13 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">New Clients</p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Số phòng ban</p>
                                     <h5 class="font-weight-bolder">
-                                        +3,462
+                                        {{ $countVT }}
                                     </h5>
                                     <p class="mb-0">
-                                        <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                        since last quarter
+                                        <span class="text-success text-sm font-weight-bolder">Cập nhật gần nhất</span>
+                                        {{ $vtlast }}
                                     </p>
                                 </div>
                             </div>
@@ -85,12 +85,13 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales</p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Số lượng nhân viên</p>
                                     <h5 class="font-weight-bolder">
-                                        $103,430
+                                        {{ $countUser }}
                                     </h5>
                                     <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
+                                        <span class="text-success text-sm font-weight-bolder">Cập nhật gần nhất</span>
+                                        {{ $userlast }}
                                     </p>
                                 </div>
                             </div>

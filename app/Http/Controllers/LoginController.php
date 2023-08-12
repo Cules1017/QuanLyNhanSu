@@ -33,7 +33,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             //dd($request->session());
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended('trang-chu');
         }
         if (Auth::guard('nhanvien')->attempt(['ten' => $request->ten_dang_nhap, 'password' => $request->password])) {
             //dd(11);

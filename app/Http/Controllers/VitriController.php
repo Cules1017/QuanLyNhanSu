@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ViTri;
+use App\Models\Vitri;
 use Illuminate\Http\Request;
 
 class VitriController extends Controller
