@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NhanVien;
+use App\Models\PhongBan;
+use App\Models\User;
+use App\Models\Vitri;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +27,33 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboard');
+        $countNV = NhanVien::count();
+        $countPB =PhongBan::count();
+        $countVT =Vitri::count();
+        $countUser =User::count();
+
+        $latestNV = NhanVien::latest()->first();
+        if ($latestNV) {
+            $nvlast = $latestNV->updated_at || $latestNV->created_at;
+        }
+
+        $latestPB = NhanVien::latest()->first();
+        if ($latestPB) {
+            $pblast = $latestPB->update_at || $latestPB->created_at;
+        }
+
+        $latestVT = NhanVien::latest()->first();
+        if ($latestVT) {
+            $vtlast = $latestVT->update_at || $latestVT->created_at;
+        }
+
+        $latestUser = NhanVien::latest()->first();
+        if ($latestUser) {
+            $userlast = $latestUser->update_at || $latestUser->created_at;
+        }
+        return view('pages.dashboard',[
+            'countNV' => $countNV, 'countPB' => $countPB, 'countVT' => $countVT, 'countUser' => $countUser,
+            'nvlast' => $nvlast, 'pblast' => $pblast, 'vtlast' => $vtlast, 'userlast' => $userlast, 
+        ]);
     }
 }

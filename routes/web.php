@@ -24,12 +24,14 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
+use App\Http\Controllers\LuongController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\PhongBanController;
 use App\Http\Controllers\QuanTriVienController;
 use App\Http\Controllers\VitriController;
 
-Route::get('/', function () {return redirect('/dashboard');})->middleware('web');
+// Route::get('/', function () {return redirect('/dashboard');})->middleware('web');
+Route::get('/', function () {return redirect('/trang-chu');})->middleware('webses');
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 	Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');
 	Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
@@ -47,11 +49,16 @@ Route::group(['middleware' => 'nhanvien'], function () {
 		Route::get('/sua-nhanvien-dc',[NhanVienController::class,'edit1'])->name('show-sua-nhanvien-dc');
 		Route::post('/chinh-nhanvien-dc',[NhanVienController::class,'update1'])->name('chinh-sua-nhanvien-dc');
 });
+
+
+
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('403ud', function(){return  view('pages.403',['data'=>'/dashboard']);})->name('403ad');
 Route::get('403u', function(){return  view('pages.403',['data'=>'/nhanvien-dc']);})->name('403nv');
+
+
 Route::group(['middleware' => 'webses'], function () {
-	Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
+	Route::get('/trang-chu', [HomeController::class, 'index'])->name('home');
 	Route::get('/vi-tri',[VitriController::class,'index'])->name('xem-vi-tri');
 	Route::post('/luu-vi-tri',[VitriController::class,'store'])->name('store-vi-tri');
 	Route::get('/xoa-vi-tri/{id}',[VitriController::class,'show'])->name('show-xoa-vi-tri');
@@ -79,6 +86,13 @@ Route::group(['middleware' => 'webses'], function () {
 	Route::post('/chinh-nhan-vien/{id}',[NhanVienController::class,'update'])->name('chinh-sua-nhan-vien');
 	Route::get('/tim-kiem-nhan-vien',[NhanVienController::class,'search'])->name('tim-kiem-nhan-vien');
 
+	Route::get('/luong',[LuongController::class,'index'])->name('xem-luong');
+	// Route::post('/luu-nhan-vien',[NhanVienController::class,'store'])->name('store-nhan-vien');
+	// Route::get('/xoa-nhan-vien/{id}',[NhanVienController::class,'show'])->name('show-xoa-nhan-vien');
+	// Route::get('/sua-nhan-vien/{id}',[NhanVienController::class,'edit'])->name('show-sua-nhan-vien');
+	// Route::post('/chinh-nhan-vien/{id}',[NhanVienController::class,'update'])->name('chinh-sua-nhan-vien');
+	// Route::get('/tim-kiem-nhan-vien',[NhanVienController::class,'search'])->name('tim-kiem-nhan-vien');
+
 	Route::get('/virtual-reality', [PageController::class, 'vr'])->name('virtual-reality');
 	Route::get('/rtl', [PageController::class, 'rtl'])->name('rtl');
 	Route::get('/profile', [UserProfileController::class, 'show'])->name('profile');
@@ -87,9 +101,6 @@ Route::group(['middleware' => 'webses'], function () {
 	Route::get('/sign-in-static', [PageController::class, 'signin'])->name('sign-in-static');
 	Route::get('/sign-up-static', [PageController::class, 'signup'])->name('sign-up-static'); 
 	Route::get('/{page}', [PageController::class, 'index'])->name('page');
-	
-
-
 	///
 	
 });

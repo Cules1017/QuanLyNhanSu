@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class QuanTriVienController extends Controller
@@ -34,6 +35,7 @@ class QuanTriVienController extends Controller
         $vitri_moi->ten_dang_nhap=$request->ten_dang_nhap;
         $vitri_moi->password=$request->password;
         $vitri_moi->email=$request->email;
+        $vitri_moi->created_at=Carbon::now();
         $vitri_moi->save();
         return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-quan-tri']);
     }
@@ -64,6 +66,7 @@ class QuanTriVienController extends Controller
     {
         $a=User::find($id);
         $a->ten_phong_ban=$request->ten_phong_ban;
+        $a->updated_at=Carbon::now();
         $a->save();
         return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-quan-tri']);
     }

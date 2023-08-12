@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Luong;
 use App\Models\NhanVien;
 use App\Models\PhongBan;
-use App\Models\ViTri;
+use App\Models\Vitri;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +60,8 @@ class NhanVienController extends Controller
         $vitri_moi->anh_nhan_vien=$path;
         $vitri_moi->ma_vi_tri=$request->ma_vi_tri;
         $vitri_moi->ma_phong_ban=$request->ma_phong_ban;
+        $vitri_moi->created_at=Carbon::now();
+
         $vitri_moi->save();
 
         $luongNV = new Luong();
@@ -97,6 +99,7 @@ class NhanVienController extends Controller
         
         $vitri_moi->ma_vi_tri=$request->ma_vi_tri;
         $vitri_moi->ma_phong_ban=$request->ma_phong_ban;
+        $vitri_moi->updated_at=Carbon::now();
         $vitri_moi->save();
         return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-nhan-vien']);
     }

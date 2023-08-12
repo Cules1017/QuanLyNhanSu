@@ -20,7 +20,4 @@ class Luong extends Model
     protected $primaryKey = 'ma_luong';
     public $timestamps = false;
     protected $guarded = [];
-
-
-
 }

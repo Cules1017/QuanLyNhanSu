@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PhongBan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PhongBanController extends Controller
@@ -39,6 +40,7 @@ class PhongBanController extends Controller
         //dd($request->all());
         $vitri_moi=new PhongBan();
         $vitri_moi->ten_phong_ban=$request->ten_phong_ban;
+        $vitri_moi->created_at=Carbon::now();
         $vitri_moi->save();
         return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-phong-ban']);
     }
@@ -69,6 +71,7 @@ class PhongBanController extends Controller
     {
         $a=PhongBan::find($id);
         $a->ten_phong_ban=$request->ten_phong_ban;
+        $a->updated_at=Carbon::now();
         $a->save();
         return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-phong-ban']);
     }
