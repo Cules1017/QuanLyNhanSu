@@ -197,5 +197,6 @@ return [
     */
 
     'same_site' => 'lax',
+    'lifetime' => env('SESSION_LIFETIME', 120)
 
 ];

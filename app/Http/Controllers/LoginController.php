@@ -36,9 +36,10 @@ class LoginController extends Controller
             return redirect()->intended('dashboard');
         }
         if (Auth::guard('nhanvien')->attempt(['ten' => $request->ten_dang_nhap, 'password' => $request->password])) {
-            //dd(11);
+           
             $request->session()->regenerate();
            //dd($request->session());
+           //dd(Auth::guard('web'),Auth::guard('nhanvien'));
 
             return redirect()->intended('nhanvien-dc');
         }
@@ -49,8 +50,8 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::guard('web')->logout();
-        Auth::guard('nhanvien')->logout();
+        if(Auth::guard('web')->user())Auth::guard('web')->logout();
+        if(Auth::guard('nhanvien')->user())Auth::guard('nhanvien')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

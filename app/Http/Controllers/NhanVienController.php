@@ -108,7 +108,9 @@ class NhanVienController extends Controller
         $nhanviens = Auth::guard('nhanvien')->user();
         $vitris = Vitri::find($nhanviens->ma_vi_tri);
         $pbis=PhongBan::find($nhanviens->ma_phong_ban);
-        return view('pages.tttk',['data' => $nhanviens, 'vitris' => $vitris,'pbis'=>$pbis]);
+        $luong=Luong::where('ma_nhan_vien',$nhanviens->ma_nhan_vien)->first();
+        //dd($luong);
+        return view('pages.tttk',['data' => $nhanviens, 'vitris' => $vitris,'pbis'=>$pbis,'luong'=>$luong]);
     }
 
     /**

@@ -1,8 +1,7 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Profile'])
-    <div class="card shadow-lg mx-4 card-profile-bottom">
+    {{-- @include('layouts.navbars.auth.topnav', ['title' => 'Profile']) --}}
         <div class="card-body p-3">
             <div class="row gx-4">
                 <div class="col-auto">
@@ -18,11 +17,17 @@
                         <p class="mb-0 font-weight-bold text-sm">
                             {{$pbis->ten_phong_ban.' - '.$vitris->ten_vi_tri}}
                         </p>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                           >
+                            Log out
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
                     <div class="nav-wrapper position-relative end-0">
                         <ul class="nav nav-pills nav-fill p-1" role="tablist">
+                            {{-- <li><a href="">LogOUT</a></li> --}}
                             {{-- <li class="nav-item">
                                 <a class="nav-link mb-0 px-0 py-1 active d-flex align-items-center justify-content-center "
                                     data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
@@ -120,7 +125,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Lương</label>
-                                    <input class="form-control" type="text" value="437300" readonly>
+                                    <input class="form-control" type="text" value="{{$luong->tien_luong}}" readonly>
                                 </div>
                             </div>
                         </form> 
