@@ -37,11 +37,11 @@ class LoginController extends Controller
         }
         //dd(['ten' => $request->ten_dang_nhap, 'password' => $request->password],Auth::guard('nhanvien')->attempt(['ten' => $request->ten_dang_nhap, 'password' => $request->password]));
         if (Auth::guard('nhanvien')->attempt(['ten' => $request->ten_dang_nhap, 'password' => $request->password])) {
-            dd(111);
+           // dd(111);
             $request->session()->regenerate();
            //dd($request->session());
            //dd(Auth::guard('web'),Auth::guard('nhanvien'));
-            dd(111);
+           // dd(111);
             return redirect()->intended('nhanvien-dc');
         }
         dd(1122);

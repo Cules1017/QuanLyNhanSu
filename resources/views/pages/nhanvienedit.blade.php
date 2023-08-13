@@ -6,7 +6,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-header pb-0">
-                    <h6>Thêm Nhân Viên Mới</h6>
+                    <h6>Cập nhật nhân viên</h6>
                 </div>
                 <div class="card-body">
                      <form action="{{ route('chinh-sua-nhan-vien',['id'=>$data->ma_nhan_vien]) }}" method="POST" enctype="multipart/form-data">{{--{{ route('nhan-vien.store') }} --}}
@@ -28,8 +28,7 @@
                             <input type="text" class="form-control" id="email" name="email" required="" value="{{$data->email}}">
                         </div>
                         <div class="mb-3">
-                            
-                            <label for="anh_nhan_vien" class="form-label">Ảnh nhan viên </label>
+                            <label for="anh_nhan_vien" class="form-label">Ảnh nhân viên </label>
                             <input type="file" class="form-control" id="anh_nhan_vien" name="anh_nhan_vien" ><img style="height: 50px;max-width:100px;" src="{{asset('storage/'. $data->anh_nhan_vien)}}" alt="">
                         </div>
                         <div class="mb-3">
@@ -58,6 +57,7 @@
                                     </div>
                                 </div>
                         </div>
+                        <a href="{{ route('chinh-sua-luong', ['id'=>$data->ma_nhan_vien]) }}"  class="btn btn-primary">Cập nhật lương</a>
                         <button type="submit" class="btn btn-primary">Lưu</button>
                     </form>
                 </div>

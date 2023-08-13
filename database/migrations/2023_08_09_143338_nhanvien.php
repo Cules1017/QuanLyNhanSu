@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('email');
             $table->integer('ma_vi_tri')->default(1);
             $table->integer('ma_phong_ban')->default(1);
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

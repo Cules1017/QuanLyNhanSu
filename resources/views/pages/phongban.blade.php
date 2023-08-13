@@ -4,7 +4,7 @@
     @include('layouts.navbars.auth.topnav', ['title' => 'Phòng ban'])
     <div class="container-fluid py-4">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
                         <h6>Bảng Quản Lý Phòng Ban</h6>
@@ -24,12 +24,12 @@
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 20px !important;">
                                             Mã Phòng Ban</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">
                                             Tên Phòng Ban</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Thao tác</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">
+                                            Thao tác</th>
                                         
                                     </tr>
                                 </thead>
@@ -37,10 +37,10 @@
                                 <tbody>
                                     @foreach ($data as $item)
                                     <tr>
-                                        <td class="align-middle">{{ $item->ma_phong_ban }}</td>
-                                        <td class="align-middle">{{ $item->ten_phong_ban }}</td>
+                                        <td class="align-middle text-center" style="width: 20px !important;">{{ $item->ma_phong_ban }}</td>
+                                        <td class="align-middle text-center">{{ $item->ten_phong_ban }}</td>
                                         
-                                        <td class="align-middle">
+                                        <td class="align-middle text-center">
                                             <a style="color: blue !important" href="{{route('show-sua-phong-ban',['id'=>$item->ma_phong_ban])}}" class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Edit user">
                                                 Sửa
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header pb-0">
                         <h6>Thêm Phòng Ban Mới</h6>

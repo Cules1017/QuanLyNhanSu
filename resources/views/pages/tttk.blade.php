@@ -105,13 +105,6 @@
                         <hr class="horizontal dark">
                         <p class="text-uppercase text-sm">Thông Tin Công Việc</p>
                         <div class="row">
-                            {{-- <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Phòng Ban</label>
-                                    <input class="form-control" type="text"
-                                        value="{{$pbis->ten_phong_ban}}" readonly>
-                                </div>
-                            </div> --}}
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Phòng Ban</label>
@@ -130,35 +123,36 @@
                                     <label for="example-text-input" class="form-control-label">Lương</label>
                                     <input class="form-control" type="text" value="{{$luong->tien_luong}}" readonly>
                                 </div>
+                                <div class="row">
+                                    <a href="{{ route('lich-su-luong') }}"> <i>Xem lịch sử lương</i> </a>
+                                </div>
                             </div>
-                        </form> 
                         </div>
+                        
                         <hr class="horizontal dark">
                         <p class="text-uppercase text-sm">Đổi Mật Khẩu</p>
                         <form action="{{ route('store-nhanvien-dc') }}" method="POST">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="pass_old" class="form-control-label">Mật Khẫu Cũ</label>
-                                    <input class="form-control" type="text" name="pass_old"
-                                         required>
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="pass_old" class="form-control-label">Mật Khẫu Cũ</label>
+                                        <input class="form-control" type="text" name="pass_old"
+                                            required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="pass_new" class="form-control-label">Mật Khẩu Mới</label>
-                                    <input class="form-control" type="text" name="pass_new"
-                                         required>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="pass_new" class="form-control-label">Mật Khẩu Mới</label>
+                                        <input class="form-control" type="text" name="pass_new"
+                                            required>
+                                    </div>
                                 </div>
+                                <button type="submit" class="btn btn-primary btn-sm ms-auto">Lưu</button>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-sm ms-auto">Lưu</button>
-                        </div>
                         </form>
                     </div>
                 </div>
-         
-            
         </div>
         @include('layouts.footers.auth.footer')
     </div>

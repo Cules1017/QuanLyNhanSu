@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('vi_tri', function (Blueprint $table) {
             $table->id('ma_vi_tri');
             $table->string('ten_vi_tri');
+            $table->timestamps();
         });
     }
 

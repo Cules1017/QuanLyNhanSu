@@ -4,7 +4,7 @@
     @include('layouts.navbars.auth.topnav', ['title' => 'Lương'])
     <div class="container-fluid py-4">
         <div class="row">
-            <div class="card mb-4">
+        <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h6>Bảng Quản Lý Lương</h6>
                 </div>
@@ -13,9 +13,9 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 20px !important;">
                                         Mã Lương</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">
                                         Mã Nhân Viên</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         Lương</th>
@@ -28,8 +28,8 @@
                             <tbody>
                                 @foreach ($luongs as $item)
                                 <tr>
-                                    <td class="align-middle">{{ $item->ma_luong }}</td>
-                                    <td class="align-middle">{{ $item->ma_nhan_vien }}</td>
+                                    <td class="align-middle text-center" style="width: 20px !important;">{{ $item->ma_luong }}</td>
+                                    <td class="align-middle text-center">{{ $item->ma_nhan_vien }}</td>
                                     <td class="align-middle">{{ $item->tien_luong }}</td>
                                     <td class="align-middle">{{ $item->ngay_cap_nhat }}</td>
                                 </tr>
