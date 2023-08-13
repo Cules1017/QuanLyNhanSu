@@ -36,6 +36,23 @@ class NhanVienController extends Controller
         return view('pages.nhanvien', ['nhanviens' => $nhanviens, 'vitris' => $vitris, 'pbis'=>$pbis]);
     }
 
+    public function editLuong($id)
+    {
+        $nhanvien = NhanVien::find($id);
+        $luongcu = Luong::where('ma_nhan_vien', $id)->latest('ngay_cap_nhat')->first();
+        return view('pages.editluong',['data' => $nhanvien, 'luongcu' => $luongcu]);
+    }
+
+    public function updateLuong(Request $request, $id)
+    {
+        $luong = new Luong();
+        $luong->ma_nhan_vien= $id;
+        $luong->tien_luong = $request->luong_moi;
+        $luong->ngay_cap_nhat = Carbon::now();
+        $luong->save();
+        return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-nhan-vien']);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -115,6 +132,17 @@ class NhanVienController extends Controller
         $luong=Luong::where('ma_nhan_vien',$nhanviens->ma_nhan_vien)->first();
         //dd($luong);
         return view('pages.tttk',['data' => $nhanviens, 'vitris' => $vitris,'pbis'=>$pbis,'luong'=>$luong]);
+    }
+
+    public function viewSalaryHistory()
+    {
+        //dd(Auth::guard('nhanvien')->user());
+        $nhanviens = Auth::guard('nhanvien')->user();
+        $vitris = Vitri::find($nhanviens->ma_vi_tri);
+        $pbis= PhongBan::find($nhanviens->ma_phong_ban);
+        $luong= Luong::where('ma_nhan_vien',$nhanviens->ma_nhan_vien)->paginate(10);
+        //dd($luong);
+        return view('pages.lichsuluong',['data' => $nhanviens, 'vitris' => $vitris, 'pbis'=>$pbis, 'luongs'=>$luong]);
     }
 
     /**

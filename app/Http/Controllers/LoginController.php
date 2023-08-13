@@ -21,7 +21,6 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-
         //dd(bcrypt('nhanvien'));
         $credentials = $request->validate([
             'ten_dang_nhap' => ['required'],

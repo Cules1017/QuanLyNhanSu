@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Số lượng nhân viên</p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Số lượng Admin</p>
                                     <h5 class="font-weight-bolder">
                                         {{ $countUser }}
                                     </h5>

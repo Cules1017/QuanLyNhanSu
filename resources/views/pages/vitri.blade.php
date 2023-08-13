@@ -4,7 +4,7 @@
     @include('layouts.navbars.auth.topnav', ['title' => 'Tables'])
     <div class="container-fluid py-4">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
                         <h6>Bảng Quản Lý Vị Trí</h6>
@@ -24,28 +24,27 @@
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 20px !important;">
                                             Mã vị trí</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">
                                             Tên vị trí</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Thao tác</th>
-                                        
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">
+                                            Thao tác</th>
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
                                     @foreach ($data as $item)
                                     <tr>
-                                        <td class="align-middle">{{ $item->ma_vi_tri }}</td>
-                                        <td class="align-middle">{{ $item->ten_vi_tri }}</td>
+                                        <td class="align-middle text-center" style="width: 20px !important;">{{ $item->ma_vi_tri }}</td>
+                                        <td class="align-middle text-center">{{ $item->ten_vi_tri }}</td>
                                         
-                                        <td class="align-middle">
+                                        <td class="align-middle text-center">
                                             <a style="color: blue !important" href="{{route('show-sua-vi-tri',['id'=>$item->ma_vi_tri])}}" class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Edit user">
                                                 Sửa
                                             </a>
-                                       <span style="min-width: 25px">|</span>
+                                            <span style="min-width: 25px">|</span>
                                             <a style="color: brown !important" href="{{route('show-xoa-vi-tri',['id'=>$item->ma_vi_tri])}}" class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Edit user">
                                                 Xóa
@@ -60,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header pb-0">
                         <h6>Thêm Vị Trí Mới</h6>

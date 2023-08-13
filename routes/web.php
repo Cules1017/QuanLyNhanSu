@@ -48,6 +48,7 @@ Route::group(['middleware' => 'nhanvien'], function () {
 		Route::get('/xoa-nhanvien-dc',[NhanVienController::class,'show1'])->name('show-xoa-nhanvien-dc');
 		Route::get('/sua-nhanvien-dc',[NhanVienController::class,'edit1'])->name('show-sua-nhanvien-dc');
 		Route::post('/chinh-nhanvien-dc',[NhanVienController::class,'update1'])->name('chinh-sua-nhanvien-dc');
+		Route::get('/lich-su-luong',[NhanVienController::class,'viewSalaryHistory'])->name('lich-su-luong');
 });
 
 
@@ -85,6 +86,8 @@ Route::group(['middleware' => 'webses'], function () {
 	Route::get('/sua-nhan-vien/{id}',[NhanVienController::class,'edit'])->name('show-sua-nhan-vien');
 	Route::post('/chinh-nhan-vien/{id}',[NhanVienController::class,'update'])->name('chinh-sua-nhan-vien');
 	Route::get('/tim-kiem-nhan-vien',[NhanVienController::class,'search'])->name('tim-kiem-nhan-vien');
+	Route::get('/chinh-sua-luong/{id}',[NhanVienController::class,'editLuong'])->name('chinh-sua-luong');
+	Route::post('/cap-nhat-luong/{id}',[NhanVienController::class,'updateLuong'])->name('cap-nhat-luong');
 
 	Route::get('/luong',[LuongController::class,'index'])->name('xem-luong');
 	// Route::post('/luu-nhan-vien',[NhanVienController::class,'store'])->name('store-nhan-vien');

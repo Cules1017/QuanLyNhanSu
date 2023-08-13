@@ -38,32 +38,32 @@ class HomeController extends Controller
         ->orderBy('thang')
         ->get();
 
-    $thang = [];
-    $listcountnhanvien = [];
+        $thang = [];
+        $listcountnhanvien = [];
 
-    foreach ($data as $item) {
-        $thang[] = Carbon::create()->month($item->thang)->format('F'); // Tạo chuỗi tháng bằng cách định dạng từ số tháng
-        $listcountnhanvien[] = $item->count;
-    }
+        foreach ($data as $item) {
+            $thang[] = Carbon::create()->month($item->thang)->format('F'); // Tạo chuỗi tháng bằng cách định dạng từ số tháng
+            $listcountnhanvien[] = $item->count;
+        }
 
-        $latestNV = NhanVien::latest()->first();
+        $latestNV = NhanVien::latest('updated_at')->first();
         if ($latestNV) {
-            $nvlast = $latestNV->updated_at || $latestNV->created_at;
+            $nvlast = $latestNV->updated_at;
         }
 
-        $latestPB = NhanVien::latest()->first();
+        $latestPB = PhongBan::latest('updated_at')->first();
         if ($latestPB) {
-            $pblast = $latestPB->update_at || $latestPB->created_at;
+            $pblast = $latestPB->updated_at;
         }
 
-        $latestVT = NhanVien::latest()->first();
+        $latestVT = Vitri::latest('updated_at')->first();
         if ($latestVT) {
-            $vtlast = $latestVT->update_at || $latestVT->created_at;
+            $vtlast = $latestVT->updated_at;
         }
 
-        $latestUser = NhanVien::latest()->first();
+        $latestUser = User::latest('updated_at')->first();
         if ($latestUser) {
-            $userlast = $latestUser->update_at || $latestUser->created_at;
+            $userlast = $latestUser->updated_at;
         }
         //dd(implode(',',$listcountnhanvien),$thang);
         return view('pages.dashboard',[
