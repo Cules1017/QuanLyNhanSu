@@ -22,7 +22,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
 
-        //dd(bcrypt('nhanvien'));
+        ///dd(bcrypt('nhanvien'));
         $credentials = $request->validate([
             'ten_dang_nhap' => ['required'],
             'password' => ['required'],
@@ -35,14 +35,16 @@ class LoginController extends Controller
 
             return redirect()->intended('trang-chu');
         }
+        //dd(['ten' => $request->ten_dang_nhap, 'password' => $request->password],Auth::guard('nhanvien')->attempt(['ten' => $request->ten_dang_nhap, 'password' => $request->password]));
         if (Auth::guard('nhanvien')->attempt(['ten' => $request->ten_dang_nhap, 'password' => $request->password])) {
-           
+            dd(111);
             $request->session()->regenerate();
            //dd($request->session());
            //dd(Auth::guard('web'),Auth::guard('nhanvien'));
-
+            dd(111);
             return redirect()->intended('nhanvien-dc');
         }
+        dd(1122);
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
