@@ -101,6 +101,7 @@
                             <p class="mb-0">Ấn để Lưu Thông Tin Đã Sửa:</p>
                             <button type="submit" class="btn btn-primary btn-sm ms-auto">Lưu</button>
                         </div>
+                    </form>
                     </div>
                         <hr class="horizontal dark">
                         <p class="text-uppercase text-sm">Thông Tin Công Việc</p>
@@ -137,15 +138,15 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="pass_old" class="form-control-label">Mật Khẫu Cũ</label>
-                                        <input class="form-control" type="text" name="pass_old"
+                                        <input class="form-control" type="password" name="pass_old"
                                             required>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="pass_new" class="form-control-label">Mật Khẩu Mới</label>
-                                        <input class="form-control" type="text" name="pass_new"
-                                            required>
+                                        <input class="form-control" type="password" name="pass_new"
+                                        required>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-sm ms-auto">Lưu</button>
