@@ -36,7 +36,7 @@ class LoginController extends Controller
             return redirect()->intended('trang-chu');
         }
         //dd(['ten' => $request->ten_dang_nhap, 'password' => $request->password],Auth::guard('nhanvien')->attempt(['ten' => $request->ten_dang_nhap, 'password' => $request->password]));
-        if (Auth::guard('nhanvien')->attempt(['ten' => $request->ten_dang_nhap, 'password' => $request->password])) {
+        if (Auth::guard('nhanvien')->attempt(['email' => $request->ten_dang_nhap, 'password' => $request->password])) {
            // dd(111);
             $request->session()->regenerate();
            //dd($request->session());
@@ -44,7 +44,7 @@ class LoginController extends Controller
            // dd(111);
             return redirect()->intended('nhanvien-dc');
         }
-        dd(1122);
+        //dd(1122);
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
