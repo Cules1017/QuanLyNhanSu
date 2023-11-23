@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../UIT_4/Research/Laravel/laravel-research-app"
+		},
+		{
+			"path": "../../../../../UIT_4/Research/nest-research"
+		},
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../../VNPT_PJ/app-html5"
+		},
+		{
+			"path": "../../../../../VNPT_PJ/micro-frontend-smarttv"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "app-html5"
+	}
+}
