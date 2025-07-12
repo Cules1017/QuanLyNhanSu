@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('ho')->nullable();
             $table->string('cccd')->nullable();
             $table->string('email');
+            $table->string('gioi_tinh')->nullable();
+            $table->date('ngay_sinh')->nullable();
             $table->integer('ma_vi_tri')->default(1);
             $table->integer('ma_phong_ban')->default(1);
             $table->string('password');

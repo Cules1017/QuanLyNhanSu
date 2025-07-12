@@ -29,6 +29,7 @@ use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\PhongBanController;
 use App\Http\Controllers\QuanTriVienController;
 use App\Http\Controllers\VitriController;
+use App\Http\Controllers\DiemDanhController;
 
 // Route::get('/', function () {return redirect('/dashboard');})->middleware('web');
 Route::get('/', function () {return redirect('/trang-chu');})->middleware('webses');
@@ -42,15 +43,19 @@ Route::get('/', function () {return redirect('/trang-chu');})->middleware('webse
 	Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
 	//Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::group(['middleware' => 'nhanvien'], function () {
-	//Route::group('/nhanvien-dc', function () {
-		Route::get('/nhanvien-dc',[NhanVienController::class,'index1'])->name('xem-nhanvien-dc');
-		Route::post('/nhanvien-dc',[NhanVienController::class,'store1'])->name('store-nhanvien-dc');
-		Route::get('/xoa-nhanvien-dc',[NhanVienController::class,'show1'])->name('show-xoa-nhanvien-dc');
-		Route::get('/sua-nhanvien-dc',[NhanVienController::class,'edit1'])->name('show-sua-nhanvien-dc');
-		Route::post('/chinh-nhanvien-dc',[NhanVienController::class,'update1'])->name('chinh-sua-nhanvien-dc');
-		Route::get('/lich-su-luong',[NhanVienController::class,'viewSalaryHistory'])->name('lich-su-luong');
+	Route::get('/nhanvien-dc', [DiemDanhController::class, 'index'])->name('xem-nhanvien-dc');
+	Route::post('/nhanvien-dc', [NhanVienController::class, 'store1'])->name('store-nhanvien-dc');
+	Route::get('/xoa-nhanvien-dc', [NhanVienController::class, 'show1'])->name('show-xoa-nhanvien-dc');
+	Route::get('/sua-nhanvien-dc', [NhanVienController::class, 'edit1'])->name('show-sua-nhanvien-dc');
+	Route::post('/chinh-nhanvien-dc', [NhanVienController::class, 'update1'])->name('chinh-sua-nhanvien-dc');
+	Route::get('/lich-su-luong', [NhanVienController::class, 'viewSalaryHistory'])->name('lich-su-luong');
+	Route::post('/check-in', [DiemDanhController::class, 'checkIn'])->name('check-in');
+	Route::post('/check-out', [DiemDanhController::class, 'checkOut'])->name('check-out');
+	// Route xem thông báo cho user
+	Route::get('/thong-bao', [App\Http\Controllers\NotificationController::class, 'index'])->name('user.notifications.index');
+	Route::get('/thong-bao/{id}', [App\Http\Controllers\NotificationController::class, 'show'])->name('user.notifications.show');
+	Route::post('/thong-bao/{id}/da-xem', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('user.notifications.markAsRead');
 });
-
 
 
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
@@ -106,4 +111,14 @@ Route::group(['middleware' => 'webses'], function () {
 	Route::get('/{page}', [PageController::class, 'index'])->name('page');
 	///
 	
+	// Notification routes cho admin
+	Route::get('/admin/notifications/create', [App\Http\Controllers\NotificationController::class, 'create'])->name('admin.notifications.create');
+	Route::post('/admin/notifications', [App\Http\Controllers\NotificationController::class, 'store'])->name('admin.notifications.store');
+	
+});
+
+// Route cho admin xem danh sách và chi tiết thông báo đã gửi
+Route::middleware(['webses'])->group(function () {
+    Route::get('/admin/notifications', [App\Http\Controllers\NotificationController::class, 'adminIndex'])->name('admin.notifications.list');
+    Route::get('/admin/notifications/{id}', [App\Http\Controllers\NotificationController::class, 'adminShow'])->name('admin.notifications.detail');
 });

@@ -1,0 +1,102 @@
+MÔ TẢ CƠ SỞ DỮ LIỆU HỆ THỐNG QUẢN LÝ NHÂN SỰ
+
+BẢNG 1: NHAN_VIEN (Bảng nhân viên)
+STT	Tên thuộc tính	Kiểu	Kích thước	Khóa chính	Khóa ngoại	Diễn giải
+1	ma_nhan_vien	BIGINT	-	PK	-	Mã nhân viên (tự động tăng)
+2	anh_nhan_vien	VARCHAR	255	-	-	Đường dẫn ảnh đại diện nhân viên
+3	ten	VARCHAR	255	-	-	Tên nhân viên
+4	ho	VARCHAR	255	-	-	Họ nhân viên
+5	cccd	VARCHAR	255	-	-	Số căn cước công dân
+6	email	VARCHAR	255	-	-	Địa chỉ email
+7	gioi_tinh	VARCHAR	255	-	-	Giới tính (Nam/Nữ)
+8	ngay_sinh	DATE	-	-	-	Ngày sinh
+9	ma_vi_tri	INT	-	-	FK	Mã vị trí công việc (tham chiếu bảng vi_tri)
+10	ma_phong_ban	INT	-	-	FK	Mã phòng ban (tham chiếu bảng phong_ban)
+11	password	VARCHAR	255	-	-	Mật khẩu đăng nhập
+12	remember_token	VARCHAR	100	-	-	Token ghi nhớ đăng nhập
+13	created_at	TIMESTAMP	-	-	-	Thời gian tạo
+14	updated_at	TIMESTAMP	-	-	-	Thời gian cập nhật
+
+BẢNG 2: PHONG_BAN (Bảng phòng ban)
+STT	Tên thuộc tính	Kiểu	Kích thước	Khóa chính	Khóa ngoại	Diễn giải
+1	ma_phong_ban	BIGINT	-	PK	-	Mã phòng ban (tự động tăng)
+2	ten_phong_ban	VARCHAR	255	-	-	Tên phòng ban
+3	created_at	TIMESTAMP	-	-	-	Thời gian tạo
+4	updated_at	TIMESTAMP	-	-	-	Thời gian cập nhật
+
+BẢNG 3: VI_TRI (Bảng vị trí công việc)
+STT	Tên thuộc tính	Kiểu	Kích thước	Khóa chính	Khóa ngoại	Diễn giải
+1	ma_vi_tri	BIGINT	-	PK	-	Mã vị trí (tự động tăng)
+2	ten_vi_tri	VARCHAR	255	-	-	Tên vị trí công việc
+3	created_at	TIMESTAMP	-	-	-	Thời gian tạo
+4	updated_at	TIMESTAMP	-	-	-	Thời gian cập nhật
+
+BẢNG 4: LUONG (Bảng lương)
+STT	Tên thuộc tính	Kiểu	Kích thước	Khóa chính	Khóa ngoại	Diễn giải
+1	ma_luong	BIGINT	-	PK	-	Mã lương (tự động tăng)
+2	ma_nhan_vien	INT	-	-	FK	Mã nhân viên (tham chiếu bảng nhan_vien)
+3	tien_luong	FLOAT	-	-	-	Số tiền lương
+4	ngay_cap_nhat	DATE	-	-	-	Ngày cập nhật lương
+
+BẢNG 5: DIEM_DANH (Bảng điểm danh/chấm công)
+STT	Tên thuộc tính	Kiểu	Kích thước	Khóa chính	Khóa ngoại	Diễn giải
+1	id	BIGINT	-	PK	-	Mã điểm danh (tự động tăng)
+2	ma_nhan_vien	BIGINT	-	-	FK	Mã nhân viên (tham chiếu bảng nhan_vien)
+3	ngay	DATE	-	-	-	Ngày điểm danh
+4	gio_vao	TIME	-	-	-	Giờ vào làm
+5	gio_ra	TIME	-	-	-	Giờ ra về
+6	trang_thai	VARCHAR	255	-	-	Trạng thái điểm danh (chưa điểm danh/đã check in/đã check out)
+7	created_at	TIMESTAMP	-	-	-	Thời gian tạo
+8	updated_at	TIMESTAMP	-	-	-	Thời gian cập nhật
+
+BẢNG 6: NGUOI_QUAN_TRI (Bảng quản trị viên)
+STT	Tên thuộc tính	Kiểu	Kích thước	Khóa chính	Khóa ngoại	Diễn giải
+1	id	BIGINT	-	PK	-	Mã quản trị viên (tự động tăng)
+2	ten_dang_nhap	VARCHAR	255	-	-	Tên đăng nhập
+3	password	VARCHAR	255	-	-	Mật khẩu đăng nhập
+4	email	VARCHAR	255	-	-	Địa chỉ email
+5	remember_token	VARCHAR	100	-	-	Token ghi nhớ đăng nhập
+6	created_at	TIMESTAMP	-	-	-	Thời gian tạo
+7	updated_at	TIMESTAMP	-	-	-	Thời gian cập nhật
+
+BẢNG 7: PASSWORD_RESET_TOKENS (Bảng khôi phục mật khẩu)
+STT	Tên thuộc tính	Kiểu	Kích thước	Khóa chính	Khóa ngoại	Diễn giải
+1	email	VARCHAR	255	PK	-	Địa chỉ email (khóa chính)
+2	token	VARCHAR	255	-	-	Token khôi phục mật khẩu
+3	created_at	TIMESTAMP	-	-	-	Thời gian tạo token
+
+BẢNG 8: PERSONAL_ACCESS_TOKENS (Bảng token truy cập cá nhân)
+STT	Tên thuộc tính	Kiểu	Kích thước	Khóa chính	Khóa ngoại	Diễn giải
+1	id	BIGINT	-	PK	-	Mã token (tự động tăng)
+2	tokenable_type	VARCHAR	255	-	-	Loại đối tượng sở hữu token
+3	tokenable_id	BIGINT	-	-	-	ID đối tượng sở hữu token
+4	name	VARCHAR	255	-	-	Tên token
+5	token	VARCHAR	64	-	-	Token hash
+6	abilities	TEXT	-	-	-	Quyền hạn của token
+7	last_used_at	TIMESTAMP	-	-	-	Thời gian sử dụng cuối
+8	expires_at	TIMESTAMP	-	-	-	Thời gian hết hạn
+9	created_at	TIMESTAMP	-	-	-	Thời gian tạo
+10	updated_at	TIMESTAMP	-	-	-	Thời gian cập nhật
+
+BẢNG 9: FAILED_JOBS (Bảng công việc thất bại)
+STT	Tên thuộc tính	Kiểu	Kích thước	Khóa chính	Khóa ngoại	Diễn giải
+1	id	BIGINT	-	PK	-	Mã công việc (tự động tăng)
+2	uuid	VARCHAR	255	-	-	UUID công việc
+3	connection	TEXT	-	-	-	Kết nối database
+4	queue	TEXT	-	-	-	Tên hàng đợi
+5	payload	LONGTEXT	-	-	-	Dữ liệu công việc
+6	exception	LONGTEXT	-	-	-	Thông tin lỗi
+7	failed_at	TIMESTAMP	-	-	-	Thời gian thất bại
+
+QUAN HỆ GIỮA CÁC BẢNG:
+- nhan_vien.ma_vi_tri -> vi_tri.ma_vi_tri
+- nhan_vien.ma_phong_ban -> phong_ban.ma_phong_ban
+- luong.ma_nhan_vien -> nhan_vien.ma_nhan_vien
+- diem_danh.ma_nhan_vien -> nhan_vien.ma_nhan_vien
+
+GHI CHÚ:
+- PK: Primary Key (Khóa chính)
+- FK: Foreign Key (Khóa ngoại)
+- Các bảng có created_at, updated_at được Laravel tự động quản lý
+- Bảng password_reset_tokens sử dụng email làm khóa chính
+- Bảng personal_access_tokens và failed_jobs là các bảng hệ thống của Laravel 

@@ -28,7 +28,7 @@ $indigo:  #596CFF !default;
 $purple:  #6f42c1 !default;
 $pink:    #d63384 !default;
 $red:     #F56565 !default;
-$orange:  #fd7e14 !default;
+$orange:  #87CEEB !default; // Changed from #fd7e14 to sky blue
 $yellow:  #FBD38D !default;
 $green:   #81E6D9 !default;
 $teal:    #20c997 !default;
@@ -52,11 +52,11 @@ $colors: (
 ) !default;
 // scss-docs-end colors-map
 
-$primary:       #fb6340 !default;
+$primary:       #87CEEB !default; // Changed from #fb6340 to sky blue
 $secondary:     #8392ab !default;
 $info:          #11cdef !default;
 $success:       #2dce89 !default;
-$warning:       #fb6340 !default;
+$warning:       #87CEEB !default; // Changed from #fb6340 to sky blue
 $danger:        #f5365c !default;
 $light:         $gray-200 !default;
 $dark:          $h-color !default;
@@ -76,8 +76,8 @@ $theme-colors: (
 // scss-docs-end theme-colors-map
 
 // Gradient colors
-$primary-gradient:            #fb6340 !default;
-$primary-gradient-state:      #f56036 !default;
+$primary-gradient:            #87CEEB !default; // Changed from #fb6340 to sky blue
+$primary-gradient-state:      #5F9EA0 !default; // Changed from #f56036 to darker sky blue
 
 $secondary-gradient:          #627594 !default;
 $secondary-gradient-state:    #a8b8d8 !default;
@@ -89,10 +89,10 @@ $success-gradient:            #2dce89 !default;
 $success-gradient-state:      #2dcecc !default;
 
 $danger-gradient:             #f5365c !default;
-$danger-gradient-state:       #f56036 !default;
+$danger-gradient-state:       #5F9EA0 !default; // Changed from #f56036 to darker sky blue
 
-$warning-gradient:            #fb6340 !default;
-$warning-gradient-state:      #fbb140 !default;
+$warning-gradient:            #87CEEB !default; // Changed from #fb6340 to sky blue
+$warning-gradient-state:      #5F9EA0 !default; // Changed from #fbb140 to darker sky blue
 
 $dark-gradient:               #212229 !default;
 $dark-gradient-state:         #212529 !default;

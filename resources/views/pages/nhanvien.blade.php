@@ -99,6 +99,19 @@
                                 <input type="text" class="form-control" id="email" name="email" required="">
                             </div>
                             <div class="mb-3">
+                                <label for="gioi_tinh" class="form-label">Giới tính <span class="text-danger">*</span></label>
+                                <select class="form-control" id="gioi_tinh" name="gioi_tinh" required="">
+                                    <option value="">Chọn giới tính</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ngay_sinh" class="form-label">Ngày sinh <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" id="ngay_sinh" name="ngay_sinh" required="">
+                            </div>
+                            <div class="mb-3">
                                 <label for="luong" class="form-label">Lương <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="luong" name="luong" required="">
                             </div>

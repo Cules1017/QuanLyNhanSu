@@ -22,4 +22,13 @@ class NhanVien extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    public function phongBan()
+    {
+        return $this->belongsTo(\App\Models\PhongBan::class, 'ma_phong_ban');
+    }
+    public function viTri()
+    {
+        return $this->belongsTo(\App\Models\Vitri::class, 'ma_vi_tri');
+    }
 }

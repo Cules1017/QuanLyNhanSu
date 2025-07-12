@@ -1,0 +1,302 @@
+BÁO CÁO ĐỒ ÁN: HỆ THỐNG QUẢN LÝ NHÂN SỰ
+
+1. Nội dung đồ án
+----------------
+Xây dựng hệ thống web quản lý nhân sự cho doanh nghiệp, hỗ trợ các nghiệp vụ:
+- Quản lý thông tin nhân viên, phòng ban, vị trí, lương.
+- Quản lý điểm danh (chấm công) cho nhân viên.
+- Quản lý tài khoản quản trị viên và phân quyền.
+- Thống kê, báo cáo số lượng nhân viên, lương, phòng ban, giới tính, độ tuổi, v.v.
+- Đăng nhập, đăng xuất, đổi mật khẩu, khôi phục mật khẩu.
+
+2. Công nghệ ứng dụng
+---------------------
+- Backend:
+  + Laravel Framework (PHP 8.1+)
+  + Cơ sở dữ liệu: MySQL (sử dụng Eloquent ORM)
+  + Các package Laravel: laravel/framework ^10.10, laravel/sanctum, laravel/ui, laravel-frontend-presets/argon, guzzlehttp/guzzle
+- Frontend:
+  + Blade Template (Laravel)
+  + Vite (build frontend)
+  + axios (giao tiếp API)
+- Khác:
+  + PHPUnit (test)
+  + Faker (tạo dữ liệu mẫu)
+  + Git (quản lý mã nguồn)
+
+3. Chức năng đã thực hiện
+-------------------------
+3.1. Quản lý nhân viên
+- Thêm, sửa, xóa, tìm kiếm nhân viên.
+- Quản lý thông tin cá nhân: họ tên, ngày sinh, giới tính, địa chỉ, số điện thoại, email, phòng ban, vị trí, ảnh đại diện, lương.
+- Xem lịch sử lương của từng nhân viên.
+
+3.2. Quản lý phòng ban
+- Thêm, sửa, xóa, tìm kiếm phòng ban.
+- Thống kê số lượng nhân viên theo phòng ban.
+
+3.3. Quản lý vị trí
+- Thêm, sửa, xóa, tìm kiếm vị trí công việc.
+
+3.4. Quản lý lương
+- Xem danh sách lương của nhân viên.
+- Cập nhật lương cho nhân viên.
+- Thống kê tổng lương, lương trung bình, lương theo phòng ban, lương theo tháng.
+
+3.5. Quản lý điểm danh (chấm công)
+- Nhân viên thực hiện check-in, check-out hàng ngày.
+- Xem lịch sử điểm danh theo tháng, năm.
+
+3.6. Quản lý tài khoản & phân quyền
+- Đăng nhập, đăng xuất cho quản trị viên và nhân viên.
+- Đổi mật khẩu, khôi phục mật khẩu qua email.
+- Quản lý tài khoản quản trị viên (thêm, sửa, xóa).
+
+3.7. Thống kê, báo cáo
+- Thống kê số lượng nhân viên, phòng ban, vị trí, tài khoản.
+- Thống kê nhân viên theo giới tính, độ tuổi, phòng ban.
+- Thống kê lương tổng, lương trung bình, lương theo phòng ban, lương theo tháng.
+
+4. Thiết kế cơ sở dữ liệu
+-------------------------
+Các bảng chính:
+- nhan_vien: Thông tin nhân viên (họ tên, ngày sinh, giới tính, email, phòng ban, vị trí, lương, ảnh, ...)
+- phong_ban: Thông tin phòng ban.
+- vitri: Thông tin vị trí công việc.
+- luong: Lịch sử lương của nhân viên.
+- diem_danh: Lịch sử điểm danh (chấm công) của nhân viên.
+- users: Tài khoản quản trị viên.
+- password_resets: Quản lý khôi phục mật khẩu.
+(Chi tiết cấu trúc bảng xem trong phần migrate của thư mục database/migrations.)
+
+5. Quy trình hoạt động
+----------------------
+1. Quản trị viên đăng nhập vào hệ thống.
+2. Thực hiện các thao tác quản lý nhân viên, phòng ban, vị trí, lương, tài khoản.
+3. Nhân viên đăng nhập, thực hiện chấm công, xem thông tin cá nhân, lịch sử lương.
+4. Hệ thống tự động thống kê, báo cáo theo thời gian thực.
+
+6. Kết luận
+-----------
+Hệ thống đã đáp ứng các nghiệp vụ quản lý nhân sự cơ bản cho doanh nghiệp vừa và nhỏ, dễ sử dụng, dễ mở rộng và bảo trì. 
+BÁO CÁO ĐỒ ÁN: HỆ THỐNG QUẢN LÝ NHÂN SỰ
+
+1. Nội dung đồ án
+----------------
+Xây dựng hệ thống web quản lý nhân sự cho doanh nghiệp, hỗ trợ các nghiệp vụ:
+- Quản lý thông tin nhân viên, phòng ban, vị trí, lương.
+- Quản lý điểm danh (chấm công) cho nhân viên.
+- Quản lý tài khoản quản trị viên và phân quyền.
+- Thống kê, báo cáo số lượng nhân viên, lương, phòng ban, giới tính, độ tuổi, v.v.
+- Đăng nhập, đăng xuất, đổi mật khẩu, khôi phục mật khẩu.
+
+2. Công nghệ ứng dụng
+---------------------
+- Backend:
+  + Laravel Framework (PHP 8.1+)
+  + Cơ sở dữ liệu: MySQL (sử dụng Eloquent ORM)
+  + Các package Laravel: laravel/framework ^10.10, laravel/sanctum, laravel/ui, laravel-frontend-presets/argon, guzzlehttp/guzzle
+- Frontend:
+  + Blade Template (Laravel)
+  + Vite (build frontend)
+  + axios (giao tiếp API)
+- Khác:
+  + PHPUnit (test)
+  + Faker (tạo dữ liệu mẫu)
+  + Git (quản lý mã nguồn)
+
+3. Chức năng đã thực hiện
+-------------------------
+3.1. Quản lý nhân viên
+- Thêm, sửa, xóa, tìm kiếm nhân viên.
+- Quản lý thông tin cá nhân: họ tên, ngày sinh, giới tính, địa chỉ, số điện thoại, email, phòng ban, vị trí, ảnh đại diện, lương.
+- Xem lịch sử lương của từng nhân viên.
+
+3.2. Quản lý phòng ban
+- Thêm, sửa, xóa, tìm kiếm phòng ban.
+- Thống kê số lượng nhân viên theo phòng ban.
+
+3.3. Quản lý vị trí
+- Thêm, sửa, xóa, tìm kiếm vị trí công việc.
+
+3.4. Quản lý lương
+- Xem danh sách lương của nhân viên.
+- Cập nhật lương cho nhân viên.
+- Thống kê tổng lương, lương trung bình, lương theo phòng ban, lương theo tháng.
+
+3.5. Quản lý điểm danh (chấm công)
+- Nhân viên thực hiện check-in, check-out hàng ngày.
+- Xem lịch sử điểm danh theo tháng, năm.
+
+3.6. Quản lý tài khoản & phân quyền
+- Đăng nhập, đăng xuất cho quản trị viên và nhân viên.
+- Đổi mật khẩu, khôi phục mật khẩu qua email.
+- Quản lý tài khoản quản trị viên (thêm, sửa, xóa).
+
+3.7. Thống kê, báo cáo
+- Thống kê số lượng nhân viên, phòng ban, vị trí, tài khoản.
+- Thống kê nhân viên theo giới tính, độ tuổi, phòng ban.
+- Thống kê lương tổng, lương trung bình, lương theo phòng ban, lương theo tháng.
+
+4. Thiết kế cơ sở dữ liệu
+-------------------------
+Các bảng chính:
+- nhan_vien: Thông tin nhân viên (họ tên, ngày sinh, giới tính, email, phòng ban, vị trí, lương, ảnh, ...)
+- phong_ban: Thông tin phòng ban.
+- vitri: Thông tin vị trí công việc.
+- luong: Lịch sử lương của nhân viên.
+- diem_danh: Lịch sử điểm danh (chấm công) của nhân viên.
+- users: Tài khoản quản trị viên.
+- password_resets: Quản lý khôi phục mật khẩu.
+(Chi tiết cấu trúc bảng xem trong phần migrate của thư mục database/migrations.)
+
+5. Quy trình hoạt động
+----------------------
+1. Quản trị viên đăng nhập vào hệ thống.
+2. Thực hiện các thao tác quản lý nhân viên, phòng ban, vị trí, lương, tài khoản.
+3. Nhân viên đăng nhập, thực hiện chấm công, xem thông tin cá nhân, lịch sử lương.
+4. Hệ thống tự động thống kê, báo cáo theo thời gian thực.
+
+6. Kết luận
+-----------
+Hệ thống đã đáp ứng các nghiệp vụ quản lý nhân sự cơ bản cho doanh nghiệp vừa và nhỏ, dễ sử dụng, dễ mở rộng và bảo trì.
+
+7. Sơ đồ tuần tự (Sequence Diagram) bằng PlantUML
+--------------------------------------------------
+
+Dưới đây là các sơ đồ tuần tự mô tả luồng xử lý cho từng chức năng chính của hệ thống, sử dụng cú pháp PlantUML. Mỗi sơ đồ đều có chú thích giải thích ý nghĩa và vai trò của các bước.
+
+---
+
+### 7.1. Chấm công (Điểm danh) - Tác nhân: Nhân viên
+
+"""
+@startuml
+' Chức năng: Nhân viên thực hiện check-in/check-out
+actor NhanVien as "Nhân viên"
+participant Web
+participant Server
+participant DB
+
+NhanVien -> Web : Đăng nhập
+Web -> Server : Gửi thông tin đăng nhập
+Server -> DB : Kiểm tra tài khoản
+DB --> Server : Kết quả xác thực
+Server --> Web : Trả về giao diện điểm danh
+NhanVien -> Web : Bấm "Check In" hoặc "Check Out"
+Web -> Server : Gửi yêu cầu điểm danh
+Server -> DB : Lưu thông tin điểm danh
+DB --> Server : Xác nhận lưu
+Server --> Web : Thông báo thành công/thất bại
+Web --> NhanVien : Hiển thị trạng thái điểm danh
+@enduml
+"""
+
+Chú thích: Sơ đồ mô tả quá trình nhân viên đăng nhập và thực hiện điểm danh. Hệ thống xác thực, lưu thông tin điểm danh và phản hồi trạng thái cho nhân viên.
+
+---
+
+### 7.2. Xem thông tin cá nhân & lương - Tác nhân: Nhân viên
+
+"""
+@startuml
+' Chức năng: Nhân viên xem thông tin cá nhân và lịch sử lương
+actor NhanVien as "Nhân viên"
+participant Web
+participant Server
+participant DB
+
+NhanVien -> Web : Đăng nhập
+Web -> Server : Gửi thông tin đăng nhập
+Server -> DB : Kiểm tra tài khoản
+DB --> Server : Kết quả xác thực
+Server --> Web : Trả về giao diện thông tin cá nhân
+NhanVien -> Web : Yêu cầu xem thông tin cá nhân/lương
+Web -> Server : Gửi yêu cầu lấy thông tin
+Server -> DB : Lấy thông tin nhân viên, lương
+DB --> Server : Trả dữ liệu
+Server --> Web : Hiển thị thông tin cá nhân, lương
+Web --> NhanVien : Xem thông tin
+@enduml
+"""
+
+Chú thích: Sơ đồ mô tả quá trình nhân viên đăng nhập và xem thông tin cá nhân, lịch sử lương. Dữ liệu được lấy từ cơ sở dữ liệu và trả về giao diện.
+
+---
+
+### 7.3. Quản lý nhân viên - Tác nhân: Người quản lý
+
+"""
+@startuml
+' Chức năng: Quản trị viên thêm/sửa/xóa/tìm kiếm nhân viên
+actor QuanLy as "Người quản lý"
+participant Web
+participant Server
+participant DB
+
+QuanLy -> Web : Đăng nhập
+Web -> Server : Gửi thông tin đăng nhập
+Server -> DB : Kiểm tra tài khoản quản trị
+DB --> Server : Kết quả xác thực
+Server --> Web : Trả về giao diện quản lý nhân viên
+QuanLy -> Web : Thêm/Sửa/Xóa/Tìm kiếm nhân viên
+Web -> Server : Gửi yêu cầu thao tác
+Server -> DB : Thực hiện thao tác trên bảng nhân viên
+DB --> Server : Xác nhận thao tác
+Server --> Web : Thông báo kết quả
+Web --> QuanLy : Hiển thị danh sách nhân viên cập nhật
+@enduml
+"""
+
+Chú thích: Sơ đồ mô tả các thao tác quản lý nhân viên của người quản lý. Mọi thao tác đều được xác thực và lưu vào cơ sở dữ liệu.
+
+---
+
+### 7.4. Quản lý lương - Tác nhân: Người quản lý
+
+"""
+@startuml
+' Chức năng: Quản trị viên xem/cập nhật lương nhân viên
+actor QuanLy as "Người quản lý"
+participant Web
+participant Server
+participant DB
+
+QuanLy -> Web : Truy cập trang lương
+Web -> Server : Lấy danh sách lương
+Server -> DB : Truy vấn bảng lương
+DB --> Server : Trả dữ liệu
+Server --> Web : Hiển thị danh sách lương
+QuanLy -> Web : Cập nhật lương nhân viên
+Web -> Server : Gửi yêu cầu cập nhật lương
+Server -> DB : Lưu thông tin lương mới
+DB --> Server : Xác nhận lưu
+Server --> Web : Thông báo kết quả
+Web --> QuanLy : Hiển thị lương cập nhật
+@enduml
+"""
+
+Chú thích: Sơ đồ mô tả quá trình người quản lý xem và cập nhật lương cho nhân viên. Dữ liệu được cập nhật và phản hồi kết quả thao tác.
+
+---
+
+### 7.5. Thống kê, báo cáo - Tác nhân: Người quản lý
+
+"""
+@startuml
+' Chức năng: Quản trị viên xem dashboard thống kê, báo cáo
+actor QuanLy as "Người quản lý"
+participant Web
+participant Server
+participant DB
+
+QuanLy -> Web : Truy cập dashboard
+Web -> Server : Lấy dữ liệu thống kê
+Server -> DB : Truy vấn tổng hợp (nhân viên, phòng ban, lương, ...)
+DB --> Server : Trả dữ liệu tổng hợp
+Server --> Web : Hiển thị biểu đồ, bảng thống kê
+Web --> QuanLy : Xem báo cáo
+@enduml
+"""
+
+Chú thích: Sơ đồ mô tả quá trình người quản lý truy cập dashboard để xem các báo cáo, thống kê tổng hợp từ hệ thống. 

@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+Hãy đọc kỹ src và mô tả thật chi tiết (chắc chắn điều bạn nói là đúng) thông tin DB nằm trong phần database migrate
+Khi tôi yêu cầu gì đó bạn hãy thực hiện và chắc chắn không ảnh hưởng đến các tính năng khác
+
+Hãy cố gắng đọc src và kế thừa những gì đã có

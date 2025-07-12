@@ -8,7 +8,7 @@
                         document.write(new Date().getFullYear())
                     </script>,
                     Tạo bởi <i class="fa fa-heart"></i>
-                    <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Nguyễn Minh Nhựt</a>
+                    <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Mai</a>
                 </div>
             </div>
         </div>

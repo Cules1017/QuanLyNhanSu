@@ -75,6 +75,8 @@ class NhanVienController extends Controller
         $vitri_moi->cccd=$request->cccd;
         $vitri_moi->email=$request->email;
         $vitri_moi->anh_nhan_vien=$path;
+        $vitri_moi->gioi_tinh=$request->gioi_tinh;
+        $vitri_moi->ngay_sinh=$request->ngay_sinh;
         $vitri_moi->ma_vi_tri=$request->ma_vi_tri;
         $vitri_moi->ma_phong_ban=$request->ma_phong_ban;
         $vitri_moi->password=bcrypt('nhanvien');
@@ -114,7 +116,8 @@ class NhanVienController extends Controller
         $vitri_moi->ten=$request->ten;
         $vitri_moi->cccd=$request->cccd;
         $vitri_moi->email=$request->email;
-        
+        $vitri_moi->gioi_tinh=$request->gioi_tinh;
+        $vitri_moi->ngay_sinh=$request->ngay_sinh;
         $vitri_moi->ma_vi_tri=$request->ma_vi_tri;
         $vitri_moi->ma_phong_ban=$request->ma_phong_ban;
         $vitri_moi->updated_at=Carbon::now();
@@ -186,16 +189,32 @@ class NhanVienController extends Controller
     }
     public function update1(Request $request)
     {
-        $vitri_moi=NhanVien::find(Auth::guard('nhanvien')->user()->ma_nhan_vien);
+        $request->validate([
+            'email' => 'required|email',
+            'ho' => 'required',
+            'ten' => 'required',
+            'cccd' => 'required',
+            'gioi_tinh' => 'required',
+            'ngay_sinh' => 'required|date'
+        ]);
+
+        $vitri_moi = NhanVien::find(Auth::guard('nhanvien')->user()->ma_nhan_vien);
+        
         if($request->file('anh_nhan_vien')){
-        $path = $request->file('anh_nhan_vien')->store('public/profile');
-        $path=substr($path, strlen('public/'));$vitri_moi->anh_nhan_vien=$path;}
+            $path = $request->file('anh_nhan_vien')->store('public/profile');
+            $path = substr($path, strlen('public/'));
+            $vitri_moi->anh_nhan_vien = $path;
+        }
         
-        $vitri_moi->ho=$request->ho;
-        $vitri_moi->ten=$request->ten;
-        $vitri_moi->cccd=$request->cccd;
-        
+        $vitri_moi->ho = $request->ho;
+        $vitri_moi->ten = $request->ten;
+        $vitri_moi->cccd = $request->cccd;
+        $vitri_moi->email = $request->email;
+        $vitri_moi->gioi_tinh = $request->gioi_tinh;
+        $vitri_moi->ngay_sinh = $request->ngay_sinh;
+        $vitri_moi->updated_at = Carbon::now();
         $vitri_moi->save();
+
         return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-nhanvien-dc']);
     }
 }

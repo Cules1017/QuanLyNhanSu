@@ -21,32 +21,31 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-
-        ///dd(bcrypt('nhanvien'));
         $credentials = $request->validate([
             'ten_dang_nhap' => ['required'],
             'password' => ['required'],
         ]);
         
-
+        // Thử đăng nhập với tài khoản admin
         if (Auth::guard('web')->attempt(['ten_dang_nhap' => $request->ten_dang_nhap, 'password' => $request->password])) {
             $request->session()->regenerate();
-            //dd($request->session());
-
             return redirect()->intended('trang-chu');
         }
-        //dd(['ten' => $request->ten_dang_nhap, 'password' => $request->password],Auth::guard('nhanvien')->attempt(['ten' => $request->ten_dang_nhap, 'password' => $request->password]));
+
+        // Thử đăng nhập với tài khoản nhân viên bằng email
         if (Auth::guard('nhanvien')->attempt(['email' => $request->ten_dang_nhap, 'password' => $request->password])) {
-           // dd(111);
             $request->session()->regenerate();
-           //dd($request->session());
-           //dd(Auth::guard('web'),Auth::guard('nhanvien'));
-           // dd(111);
             return redirect()->intended('nhanvien-dc');
         }
-        //dd(1122);
+
+        // Thử đăng nhập với tài khoản nhân viên bằng CCCD
+        if (Auth::guard('nhanvien')->attempt(['cccd' => $request->ten_dang_nhap, 'password' => $request->password])) {
+            $request->session()->regenerate();
+            return redirect()->intended('nhanvien-dc');
+        }
+
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Thông tin đăng nhập không chính xác.',
         ]);
     }
 

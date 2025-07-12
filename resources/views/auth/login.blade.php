@@ -24,11 +24,11 @@
                                         @csrf
                                         @method('post')
                                         <div class="flex flex-col mb-3">
-                                            <input type="text" name="ten_dang_nhap" class="form-control form-control-lg" value="{{ old('ten_dang_nhap') ?? 'admin' }}">
+                                            <input type="text" name="ten_dang_nhap" class="form-control form-control-lg" placeholder="Email/CCCD/Tên đăng nhập" value="{{ old('ten_dang_nhap') }}">
                                             @error('ten_dang_nhap') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                         </div>
                                         <div class="flex flex-col mb-3">
-                                            <input type="password" name="password" class="form-control form-control-lg" aria-label="Password" value="secret" >
+                                            <input type="password" name="password" class="form-control form-control-lg" placeholder="Mật khẩu" aria-label="Password">
                                             @error('password') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                         </div>
                                         <div class="form-check form-switch">
@@ -36,7 +36,15 @@
                                             <label class="form-check-label" for="rememberMe">ghi nhớ tài khoản</label>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Đăng Nhập</button>
+                                            <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0" 
+                                                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                                                           border: none; 
+                                                           color: white; 
+                                                           font-weight: 600;
+                                                           transition: all 0.3s ease;
+                                                           box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
+                                                Đăng Nhập
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -45,10 +53,14 @@
                         </div>
                         <div
                             class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
-                            <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
-                                style="background-image: url('https://t4.ftcdn.net/jpg/04/60/71/01/360_F_460710131_YkD6NsivdyYsHupNvO3Y8MPEwxTAhORh.jpg');
-              background-size: cover;">
-                                <span class="mask bg-gradient-primary opacity-6"></span>
+                            <div class="position-relative  h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
+                                style="background-image: url('https://img.freepik.com/free-vector/modern-technology-blue-color_132230-201.jpg?w=1060');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              width: 100%;
+              height: 100%;">
+                                <span class=" opacity-6"></span>
                                 <h4 class="mt-5 text-white font-weight-bolder position-relative">"Hệ Thống Quản Trị Nhân Viên "</h4>
                                 <p class="text-white position-relative"></p>
                             </div>
