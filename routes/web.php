@@ -55,6 +55,8 @@ Route::group(['middleware' => 'nhanvien'], function () {
 	Route::get('/thong-bao', [App\Http\Controllers\NotificationController::class, 'index'])->name('user.notifications.index');
 	Route::get('/thong-bao/{id}', [App\Http\Controllers\NotificationController::class, 'show'])->name('user.notifications.show');
 	Route::post('/thong-bao/{id}/da-xem', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('user.notifications.markAsRead');
+    Route::get('/don-xin-phep-user', [\App\Http\Controllers\DonXinPhepController::class, 'userIndex'])->name('user.don_xin_phep.index');
+    Route::post('/don-xin-phep-user', [\App\Http\Controllers\DonXinPhepController::class, 'userStore'])->name('user.don_xin_phep.store');
 });
 
 
@@ -121,4 +123,12 @@ Route::group(['middleware' => 'webses'], function () {
 Route::middleware(['webses'])->group(function () {
     Route::get('/admin/notifications', [App\Http\Controllers\NotificationController::class, 'adminIndex'])->name('admin.notifications.list');
     Route::get('/admin/notifications/{id}', [App\Http\Controllers\NotificationController::class, 'adminShow'])->name('admin.notifications.detail');
+});
+
+// Route quản lý đơn xin phép cho admin
+Route::group(['middleware' => 'webses'], function () {
+    Route::get('/admin/don-xin-phep', [\App\Http\Controllers\DonXinPhepController::class, 'index'])->name('admin.don_xin_phep.index');
+    Route::get('/admin/don-xin-phep/{id}', [\App\Http\Controllers\DonXinPhepController::class, 'show'])->name('admin.don_xin_phep.show');
+    Route::post('/admin/don-xin-phep/{id}/approve', [\App\Http\Controllers\DonXinPhepController::class, 'approve'])->name('admin.don_xin_phep.approve');
+    Route::post('/admin/don-xin-phep/{id}/reject', [\App\Http\Controllers\DonXinPhepController::class, 'reject'])->name('admin.don_xin_phep.reject');
 });

@@ -17,6 +17,7 @@
                         <p class="mb-0 font-weight-bold text-sm">
                             {{$pbis->ten_phong_ban.' - '.$vitris->ten_vi_tri}}
                         </p>
+                        <a href="{{ route('user.don_xin_phep.index') }}" class="btn btn-warning btn-sm mt-2">Tạo đơn xin phép</a>
                         <form role="form" method="post" action="{{ route('logout') }}" id="logout-form">
                             @csrf
                         <a href="{{ route('logout') }}"
@@ -120,16 +121,19 @@
                                             @endif
                                         </p>
                                         @if(!$diemDanhHienTai || $diemDanhHienTai->trang_thai === 'chưa điểm danh')
-                                            <form action="{{ route('check-in') }}" method="POST">
+                                            <form action="{{ route('check-in') }}" method="POST" class="d-inline-block">
                                                 @csrf
                                                 <button type="submit" class="btn btn-primary">Check In</button>
                                             </form>
                                         @elseif($diemDanhHienTai->trang_thai === 'đã check in')
-                                            <form action="{{ route('check-out') }}" method="POST">
+                                            <form action="{{ route('check-out') }}" method="POST" class="d-inline-block">
                                                 @csrf
                                                 <button type="submit" class="btn btn-warning">Check Out</button>
                                             </form>
                                         @endif
+                                        <a href="{{ route('user.don_xin_phep.index') }}" class="btn btn-outline-info btn-sm ms-2 mt-2 mt-md-0 align-middle">
+                                            <i class="fa fa-calendar-plus"></i> Tạo đơn xin phép
+                                        </a>
                                     </div>
                                 </div>
                             </div>

@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $table = 'nguoi_quan_tri';
     protected $fillable = [
+        'ten_dang_nhap',
         'username',
         'firstname',
         'lastname',
