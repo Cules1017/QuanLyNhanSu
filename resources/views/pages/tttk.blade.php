@@ -17,7 +17,6 @@
                         <p class="mb-0 font-weight-bold text-sm">
                             {{$pbis->ten_phong_ban.' - '.$vitris->ten_vi_tri}}
                         </p>
-                        <a href="{{ route('user.don_xin_phep.index') }}" class="btn btn-warning btn-sm mt-2">Tạo đơn xin phép</a>
                         <form role="form" method="post" action="{{ route('logout') }}" id="logout-form">
                             @csrf
                         <a href="{{ route('logout') }}"
