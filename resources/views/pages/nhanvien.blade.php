@@ -49,7 +49,7 @@
                                     @foreach ($nhanviens as $item)
                                     <tr>
                                         <td style="width: 20px !important; text-align:center;" class="align-middle">{{ $item->ma_nhan_vien }}</td>
-                                        <td class="align-middle"><img style="height: 50px;max-width:100px;" src="{{asset('storage/'. $item->anh_nhan_vien)}}" alt=""></td>
+                                        <td class="align-middle"><img style="height: 50px;max-width:100px;" src="{{ \App\Helpers\FileHelper::getProfileImageUrl($item->anh_nhan_vien) }}" alt=""></td>
                                         <td class="align-middle">{{ $item->ho }} {{ $item->ten }}</td>
                                         <td class="align-middle">{{ $item->cccd }}</td>
                                         <td class="align-middle">{{ $item->email }}</td>

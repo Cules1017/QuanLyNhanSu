@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\FileHelper;
 use App\Models\Luong;
 use App\Models\NhanVien;
 use App\Models\PhongBan;
@@ -66,9 +67,17 @@ class NhanVienController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->file('anh_nhan_vien'));
-        $path = $request->file('anh_nhan_vien')->store('public/profile');
-        $path=substr($path, strlen('public/'));
+        // Upload file using FileHelper
+        $path = null;
+        if ($request->hasFile('anh_nhan_vien')) {
+            $path = FileHelper::uploadFile(
+                $request->file('anh_nhan_vien'),
+                'profile',
+                's3',
+                'public'
+            );
+        }
+        
         $vitri_moi=new NhanVien();
         $vitri_moi->ho=$request->ho;
         $vitri_moi->ten=$request->ten;
@@ -108,9 +117,17 @@ class NhanVienController extends Controller
     public function update(Request $request, string $id)
     {
         $vitri_moi=NhanVien::find($id);
-        if($request->file('anh_nhan_vien')){
-        $path = $request->file('anh_nhan_vien')->store('public/profile');
-        $path=substr($path, strlen('public/'));$vitri_moi->anh_nhan_vien=$path;}
+        if($request->hasFile('anh_nhan_vien')){
+            $path = FileHelper::uploadFile(
+                $request->file('anh_nhan_vien'),
+                'profile',
+                's3',
+                'public'
+            );
+            if ($path) {
+                $vitri_moi->anh_nhan_vien=$path;
+            }
+        }
         
         $vitri_moi->ho=$request->ho;
         $vitri_moi->ten=$request->ten;
@@ -161,18 +178,39 @@ class NhanVienController extends Controller
      */
     public function store1(Request $request)
     {
-        //dd($request->file('anh_nhan_vien'));
-        $nhanviens = Auth::guard('nhanvien')->user();
-        //dd($request->all(),['ten' => $nhanviens->ten, 'password' => $request->pass_old],Auth::guard('nhanvien')->attempt(['ten' => $nhanviens->ten, 'password' => $request->pass_old]));
-        if (Auth::guard('nhanvien')->attempt(['ten' => $nhanviens->ten, 'password' => $request->pass_old])) {
-            $a=NhanVien::find($nhanviens->ma_nhan_vien);
-            $a->password=$request->pass_new;
-            $a->save();
-            $request->session()->regenerate();
-            return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-nhanvien-dc']);
+        // Upload file using FileHelper
+        $path = null;
+        if ($request->hasFile('anh_nhan_vien')) {
+            $path = FileHelper::uploadFile(
+                $request->file('anh_nhan_vien'),
+                'profile',
+                's3',
+                'public'
+            );
         }
-        return view('pages.thatbai',['msg'=>"Thông tin nhập sai",'link'=>'xem-nhanvien-dc']);
         
+        $vitri_moi=new NhanVien();
+        $vitri_moi->ho=$request->ho;
+        $vitri_moi->ten=$request->ten;
+        $vitri_moi->cccd=$request->cccd;
+        $vitri_moi->email=$request->email;
+        $vitri_moi->anh_nhan_vien=$path;
+        $vitri_moi->gioi_tinh=$request->gioi_tinh;
+        $vitri_moi->ngay_sinh=$request->ngay_sinh;
+        $vitri_moi->ma_vi_tri=$request->ma_vi_tri;
+        $vitri_moi->ma_phong_ban=$request->ma_phong_ban;
+        $vitri_moi->password=bcrypt('nhanvien');
+        $vitri_moi->created_at=Carbon::now();
+
+        $vitri_moi->save();
+
+        $luongNV = new Luong();
+        $luongNV->ma_nhan_vien = $vitri_moi->ma_nhan_vien;
+        $luongNV->tien_luong = $request->luong;
+        $luongNV->ngay_cap_nhat = Carbon::now();
+        $luongNV->save();
+
+        return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-nhan-vien']);
     }
     public function show1(string $id)
     {
@@ -189,32 +227,29 @@ class NhanVienController extends Controller
     }
     public function update1(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'ho' => 'required',
-            'ten' => 'required',
-            'cccd' => 'required',
-            'gioi_tinh' => 'required',
-            'ngay_sinh' => 'required|date'
-        ]);
-
-        $vitri_moi = NhanVien::find(Auth::guard('nhanvien')->user()->ma_nhan_vien);
-        
-        if($request->file('anh_nhan_vien')){
-            $path = $request->file('anh_nhan_vien')->store('public/profile');
-            $path = substr($path, strlen('public/'));
-            $vitri_moi->anh_nhan_vien = $path;
+        $vitri_moi=NhanVien::find($request->ma_nhan_vien);
+        if($request->hasFile('anh_nhan_vien')){
+            $path = FileHelper::uploadFile(
+                $request->file('anh_nhan_vien'),
+                'profile',
+                's3',
+                'public'
+            );
+            if ($path) {
+                $vitri_moi->anh_nhan_vien = $path;
+            }
         }
         
-        $vitri_moi->ho = $request->ho;
-        $vitri_moi->ten = $request->ten;
-        $vitri_moi->cccd = $request->cccd;
-        $vitri_moi->email = $request->email;
-        $vitri_moi->gioi_tinh = $request->gioi_tinh;
-        $vitri_moi->ngay_sinh = $request->ngay_sinh;
-        $vitri_moi->updated_at = Carbon::now();
+        $vitri_moi->ho=$request->ho;
+        $vitri_moi->ten=$request->ten;
+        $vitri_moi->cccd=$request->cccd;
+        $vitri_moi->email=$request->email;
+        $vitri_moi->gioi_tinh=$request->gioi_tinh;
+        $vitri_moi->ngay_sinh=$request->ngay_sinh;
+        $vitri_moi->ma_vi_tri=$request->ma_vi_tri;
+        $vitri_moi->ma_phong_ban=$request->ma_phong_ban;
+        $vitri_moi->updated_at=Carbon::now();
         $vitri_moi->save();
-
-        return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-nhanvien-dc']);
+        return view('pages.thanhcong',['msg'=>"Thao Tác Thành Công",'link'=>'xem-nhan-vien']);
     }
 }

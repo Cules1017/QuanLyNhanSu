@@ -42,7 +42,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="anh_nhan_vien" class="form-label">Ảnh nhân viên </label>
-                            <input type="file" class="form-control" id="anh_nhan_vien" name="anh_nhan_vien" ><img style="height: 50px;max-width:100px;" src="{{asset('storage/'. $data->anh_nhan_vien)}}" alt="">
+                            <input type="file" class="form-control" id="anh_nhan_vien" name="anh_nhan_vien" ><img style="height: 50px;max-width:100px;" src="{{ \App\Helpers\FileHelper::getProfileImageUrl($data->anh_nhan_vien) }}" alt="">
                         </div>
                         <div class="mb-3">
                             <label for="ma_vi_tri" class="form-label">Vị trí<span class="text-danger">*</span></label>
